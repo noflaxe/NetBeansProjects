@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+   <resource-ref>
+
+<description>DB POOL</description>
+
+<res-ref-name>jdbc/facultative</res-ref-name>
+
+<res-type>javax.sql.DataSource</res-type>
+
+<res-auth>Container</res-auth>
+
+</resource-ref>
+
+<error-page>
+     <error-code>404</error-code>
+    <location>/error.jsp</location>
+</error-page>
+
+   <servlet>
+        <servlet-name>Log4jInit</servlet-name>
+        <servlet-class>loggers.Log4jInit</servlet-class>
+        <init-param>
+            <param-name>logfile</param-name>
+            <param-value>WEB-INF\log4j.properties</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+     <servlet-mapping>
+
+<servlet-name>Log4jInit</servlet-name>
+
+<url-pattern>/Log4jInit</url-pattern>
+</servlet-mapping> 
+    
+    <filter>
+        <filter-name>Encoding</filter-name>
+        <filter-class>filters.Encoding</filter-class>
+    </filter>
+     <filter-mapping>
+        <filter-name>Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>Authorization</servlet-name>
+        <servlet-class>controllers.Authorization</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Authorization</servlet-name>
+        <url-pattern>/Authorization</url-pattern>
+    </servlet-mapping>
+ 
+     <servlet>
+        <servlet-name>InstructorChoice</servlet-name>
+        <servlet-class>controllers.InstructorChoice</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InstructorChoice</servlet-name>
+        <url-pattern>/InstructorChoice</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>StudentChoice</servlet-name>
+        <servlet-class>controllers.StudentChoice</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentChoice</servlet-name>
+        <url-pattern>/StudentChoice</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>StudentCourseEntry</servlet-name>
+        <servlet-class>controllers.StudentCourseEntry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentCourseEntry</servlet-name>
+        <url-pattern>/StudentCourseEntry</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>InstructorUpdate</servlet-name>
+        <servlet-class>controllers.InstructorUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InstructorUpdate</servlet-name>
+        <url-pattern>/InstructorUpdate</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
